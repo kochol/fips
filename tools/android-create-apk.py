@@ -169,11 +169,24 @@ cmd = [
     '-F', args.path + args.name + '-unaligned.apk',
     'bin'
 ]
+print (f'my_log:{args.path}')
+print(os.path.exists(args.path + 'assets'))
+if os.path.exists(args.path + 'assets') :
+    cmd.insert(6, '-A')
+    cmd.insert(7, 'assets')
+    
 subprocess.call(cmd, cwd=apk_dir)
 cmd = [
     AAPT, 'add', '-v',
     args.path + args.name + '-unaligned.apk',
     'lib/'+args.abi+'/'+so_name
+]
+subprocess.call(cmd, cwd=apk_dir)
+
+cmd = [
+    AAPT, 'add', '-v',
+    args.path + args.name + '-unaligned.apk',
+    'lib/'+args.abi+'/libcari.so'
 ]
 subprocess.call(cmd, cwd=apk_dir)
 
