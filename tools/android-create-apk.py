@@ -98,6 +98,9 @@ src_so = args.path + so_name
 dst_so = libs_dir + so_name
 shutil.copy(src_so, dst_so)
 
+# copy libcari.so
+shutil.copy(args.path + 'libcari.so', libs_dir + 'libcari.so')
+
 # copy the dummy assets directory
 res_dir = apk_dir + 'res/'
 if not os.path.exists(res_dir):
